@@ -1,10 +1,9 @@
 // Package test
-package test
+package xsort
 
 import (
-	"testing"
 	"reflect"
-	"github.com/mnhkahn/gods/xsort"
+	"testing"
 )
 
 type testMerge struct {
@@ -15,11 +14,16 @@ type testMerge struct {
 
 func TestMergeUints(t *testing.T) {
 	for i, testcase := range []testMerge{
+		{nil, 1, nil},
+		{[][]uint32{{0, 1}}, 1, []uint32{0, 1}},
 		{[][]uint32{{0, 1}, nil}, 1, []uint32{}},
 		{[][]uint32{{0, 1}, {}}, 1, []uint32{}},
 		{[][]uint32{{0}, {1}}, 1, []uint32{}},
 		{[][]uint32{{0, 1}, {1}}, 1, []uint32{1}},
 		{[][]uint32{{0, 1}, {0, 1, 2}}, 1, []uint32{0, 1}},
+		{[][]uint32{{1, 2}, {2, 3}}, 1, []uint32{2}},
+		{nil, 2, nil},
+		{[][]uint32{{0, 1}}, 2, []uint32{0, 1}},
 		{[][]uint32{{0, 1}, {0, 1, 2}}, 2, []uint32{0, 1, 2}},
 		{[][]uint32{{0, 9}, {0, 2}}, 2, []uint32{0, 2, 9}},
 		{[][]uint32{{0, 9}, {1, 3}, {1, 2}}, 2, []uint32{0, 1, 2, 3, 9}},
@@ -30,17 +34,17 @@ func TestMergeUints(t *testing.T) {
 		{[][]uint32{{1, 2}, {0, 1}}, 3, []uint32{0, 1, 2}},
 	} {
 		if testcase.x == 1 {
-			temp := xsort.MergeAndUints(testcase.ids...)
+			temp := MergeAndUints(testcase.ids...)
 			if !reflect.DeepEqual(temp, testcase.res) {
 				t.Error(i, testcase, temp, len(temp))
 			}
 		} else if testcase.x == 2 {
-			temp := xsort.MergeOrUints(testcase.ids...)
+			temp := MergeOrUints(testcase.ids...)
 			if !reflect.DeepEqual(temp, testcase.res) {
 				t.Error(i, testcase, temp)
 			}
 		} else if testcase.x == 3 {
-			temp := xsort.MergeUInt(testcase.ids[0], testcase.ids[1])
+			temp := MergeUInt(testcase.ids[0], testcase.ids[1])
 			if !reflect.DeepEqual(temp, testcase.res) {
 				t.Error(i, testcase, temp)
 			}
