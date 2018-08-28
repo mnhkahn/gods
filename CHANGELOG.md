@@ -2,6 +2,9 @@
 ## [Unreleased]
 
 
+<a name="v1.0.0"></a>
+## [v1.0.0] - 2018-08-27
+
 <a name="1.0.0"></a>
 ## 1.0.0 - 2018-08-27
 ### Feat
@@ -11,4 +14,5 @@
 - **xsort:** Supports multiple merging and merging sort.
 
 
-[Unreleased]: https://github.com/mnhkahn/gods/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/mnhkahn/gods/compare/v1.0.0...HEAD
+[v1.0.0]: https://github.com/mnhkahn/gods/compare/1.0.0...v1.0.0
